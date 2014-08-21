@@ -1,0 +1,172 @@
+#page-container{
+    margin: 0;
+    padding: 0;
+/*    border-style: solid;
+    border-color: #0000ff;*/
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    color: #000;
+
+    vertical-align: baseline;
+    background: transparent;
+}
+
+html {
+  /*background: #222 url("hexellence.png") repeat;*/
+  background-color: #FFF;
+}
+
+footer {
+    width: 96%;
+    font-size: 4px;
+    margin: 2px auto;
+    border-style: dotted;
+    border-color: #000000;
+}
+
+#banner {
+    padding-bottom: 0px;
+    /*border-style: solid;*/
+}
+
+#banner-inner-wrapper {
+    display: table;
+    width: 100%;
+    /*margin: 0.2em auto;*/
+    margin: 0px;
+}
+
+#banner-inner {
+    display: table-row;
+}
+
+#logo {
+    max-width: 100%;
+    vertical-align: middle;
+}
+/******************* NAVIGATION BUTTON ******************/
+/********************************************************/
+#menu-nav {
+    display: table-cell;
+    vertical-align: bottom;
+    width: 30px;
+    
+    background: transparent url(Images/B2.png) no-repeat 0 0;
+    background-size: 70% 90%;
+    background-position: center;
+    background-color: #2980B9;
+	-webkit-box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);
+	box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);
+}
+
+#menu-nav:active {
+    background-color: #E74C3C;
+}
+
+#title {
+    display: table-cell;
+    background-color: #3498DB;
+/*	-webkit-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);*/
+/*    border-style: solid;
+    border-color: #00ff00;*/
+}
+
+#title div {
+    position: relative;
+    -webkit-transform: translateY(3%);
+    -ms-transform: translateY(3%);
+    transform: translateY(3%);
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+/*    color: #6a9ca7;*/
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 22px;
+	padding: 3px;
+/*    border-style: solid;
+    border-color: #0000ff;*/
+}
+
+/********************* INFO BAR ****************************/
+/***************************************************************/
+#infobar {
+    height: 15px;
+    margin-bottom: 0;
+    font-size: 4px;
+    background-color: #ECF0F1;
+}
+
+#infobar div {
+	height: 100%;
+	text-align: center;
+}
+
+#infobar div span {
+	position: relative;
+	top: 2px;	
+	font-size: 10px;
+	font-weight: bold;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#infoDate span {
+	color: #B2B6B8;
+}
+
+#infoContact a:link {
+	text-decoration: none;
+	color: #5DC282;
+}
+
+#infoContact a:visited {
+	color: #5DC282;
+}
+
+#infoContact a:active {
+	color: #000;
+}
+
+#infoContact span {
+	color: #5DC282;
+}
+
+#infoEscribir a:link {
+	text-decoration: none;
+	color: #5DC282;
+}
+
+#infoEscribir a:visited {
+	color: #5DC282;
+}
+
+#infoEscribir a:active {
+	color: #000;
+}
+
+#infoDate {
+	float: left;
+	width: 140px;
+}
+
+#infoEscribir {
+	float: right;
+	width: 55px;
+}
+
+#infoContact {
+	float: right;
+	width: 55px;
+}
+
+
+
+
+
+
