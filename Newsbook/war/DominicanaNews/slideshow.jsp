@@ -9,7 +9,9 @@
                 <p class="slideDes">
                 	Los habitantes de la Franja de Gaza llevaron a cabo por 
                 	primera vez desde el inicio de la guerra la tradicional 
-                	oracion del viernes sin 
+                	oracion del viernes sin Lorem ipsum dolor sit amet, 
+                    consectetur adipisicing elit, sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua
                 </p>
              </div><!--/slideText-->
         </div><!--/slide-->

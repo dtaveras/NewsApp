@@ -30,19 +30,19 @@
     $(document).ready(function() {
                    
       var currentPosition = 0;
-      var slideWidth = 314;
+      var slideWidth = $('.slide').width();
       var slides = $('.slide');
       var numberOfSlides = slides.length;
       var slideShowInterval;
       var speed = 10000;
       
-      var containerElem = document.getElementById('page-container');
+      /*var containerElem = document.getElementById('page-container');
       var textDiv = document.createElement("DIV");
       var img1 = document.getElementsByTagName('img')[0];
       var slide = document.getElementsByClassName("slide")[0];
       
       textDiv.innerHTML = $('.slide').width();
-      document.body.appendChild(textDiv);
+      document.body.appendChild(textDiv);*/
       
       /*slideShowInterval = setInterval(changePosition, speed);*/
       /*slides.wrapAll('<div id="slidesHolder"></div>');*/
@@ -97,6 +97,19 @@
 	<jsp:include page="banner.jsp"/>
 	<jsp:include page="slideshow.jsp"/>
 	</div>
+	
+	<script src="DominicanaNews/clampjs/clamp.js"></script>
+	<script>
+		var numSlides = document.getElementsByClassName('slide').length;
+		var i;
+		//Clamp text to 3 lines and title to 2
+		for(i=0; i< numSlides; i++){
+			var titleElem = document.getElementsByClassName('slideTitle')[i];
+			var textElem = document.getElementsByClassName('slideText')[i];
+			$clamp(textElem, {clamp: 3, useNativeClamp:false, animate:false});
+			$clamp(titleElem, {clamp: 2, useNativeClamp:false, animate:false});
+		}
+	</script>
 </body>
 
 </html>
