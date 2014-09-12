@@ -2,7 +2,6 @@ package newsbook;
 
 import java.io.IOException;
 
-
 import javax.servlet.http.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,14 +16,111 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 import java.util.Vector;
+import java.util.LinkedList;
+import java.util.Enumeration;
+
+import newsbook.*;
 
 @SuppressWarnings("serial")
 public class ParserTestServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
+		System.out.println("Running ParserTest Servlet");
 		req.setAttribute("title", "News Jsp Tester");
-		
-		RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher("/intro.jsp");
-		reqDispatcher.forward(req,resp);		
+
+		String testOption = req.getParameter("TestOption");
+		if (!testOption.equals("Lottery")) {
+			DiarioParser elDiario = new DiarioParser();
+			int successRes = -1;
+			LinkedList<NewsObject> newsList = null;
+
+			switch (testOption) {
+			case "Education":
+				successRes = elDiario.fillEducacionNewsList();
+				if (successRes != 1) {
+					System.out.println("Failed to Fill EducationNewsList");
+				}
+				newsList = elDiario.getEducacionNewsList();
+				System.out.println("Education");
+
+				break;
+			case "National":
+				successRes = elDiario.fillNacionalesNewsList();
+				if (successRes != 1) {
+					System.out.println("Failed to Fill NationalesNewsList");
+				}
+				newsList = elDiario.getNacionalesNewsList();
+				System.out.println("National");
+
+				break;
+			default:
+				System.out.println("Default");
+			}
+
+			if (successRes == 1)
+				req.setAttribute("NewsList", newsList);
+			else {
+				req.setAttribute("NewsList", null);
+			}
+		} else {
+			System.out.println("Lottery Page");
+			LoteriaNacional loteriaNacional = new LoteriaNacional();
+			// LNS1, LNS2, QP, RL
+			Vector<String> lns1_num = loteriaNacional
+					.getLotteryNumbers(LoteriaNacional.lotteryType.LOTERIA_NATIONAL_SORTEO_1);
+			String lns1_time = loteriaNacional
+					.getLotteryTime(LoteriaNacional.lotteryType.LOTERIA_NATIONAL_SORTEO_1);
+			String lns1_date = loteriaNacional
+					.getLotteryDate(LoteriaNacional.lotteryType.LOTERIA_NATIONAL_SORTEO_1);
+
+			Vector<String> lns2_num = loteriaNacional
+					.getLotteryNumbers(LoteriaNacional.lotteryType.LOTERIA_NATIONAL_SORTEO_2);
+			String lns2_time = loteriaNacional
+					.getLotteryTime(LoteriaNacional.lotteryType.LOTERIA_NATIONAL_SORTEO_2);
+			String lns2_date = loteriaNacional
+					.getLotteryDate(LoteriaNacional.lotteryType.LOTERIA_NATIONAL_SORTEO_2);
+
+			Vector<String> qp_num = loteriaNacional
+					.getLotteryNumbers(LoteriaNacional.lotteryType.QUINIELA_PALE);
+			String qp_time = loteriaNacional
+					.getLotteryTime(LoteriaNacional.lotteryType.QUINIELA_PALE);
+			String qp_date = loteriaNacional
+					.getLotteryDate(LoteriaNacional.lotteryType.QUINIELA_PALE);
+
+			Vector<String> pgm_num = loteriaNacional
+					.getLotteryNumbers(LoteriaNacional.lotteryType.PEGA_MAS);
+			String pgm_time = loteriaNacional
+					.getLotteryTime(LoteriaNacional.lotteryType.PEGA_MAS);
+			String pgm_date = loteriaNacional
+					.getLotteryDate(LoteriaNacional.lotteryType.PEGA_MAS);
+			
+			req.setAttribute("lns1_num", lns1_num);
+			req.setAttribute("lns1_time", lns1_time);
+			req.setAttribute("lns1_date", lns1_date);
+			
+			req.setAttribute("lns2_num", lns2_num);
+			req.setAttribute("lns2_time", lns2_time);
+			req.setAttribute("lns2_date", lns2_date);
+			
+			req.setAttribute("qp_num", qp_num);
+			req.setAttribute("qp_time", qp_time);
+			req.setAttribute("qp_date", qp_date);
+			
+			req.setAttribute("pgm_num", pgm_num);
+			req.setAttribute("pgm_time", pgm_time);
+			req.setAttribute("pgm_date", pgm_date);
+			
+			RequestDispatcher reqDispatcher = getServletConfig()
+					.getServletContext().getRequestDispatcher(
+							"/DominicanaNews/Tests/loteriatest.jsp");
+			reqDispatcher.forward(req, resp);
+			return;
+		}
+
+		RequestDispatcher reqDispatcher = getServletConfig()
+				.getServletContext().getRequestDispatcher(
+						"/DominicanaNews/Tests/parsertest.jsp");
+		reqDispatcher.forward(req, resp);
+		return;
 	}
 }

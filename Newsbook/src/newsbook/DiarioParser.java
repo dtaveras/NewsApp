@@ -2,6 +2,7 @@ package newsbook;
 
 import newsbook.NewsObject;
 
+
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -44,7 +45,7 @@ public class DiarioParser {
     		doc = Jsoup.connect(site).userAgent(const_ua).get();
 		} catch (IOException e) {
 			System.out.println("Failed to get Document");
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
     	
@@ -100,8 +101,8 @@ public class DiarioParser {
 		String articleFullTitle = doc.select("title").first().html();
 		newsObj.setFullTitle(articleFullTitle);
 		
-		System.out.println(fullTextElem.text());
-		System.out.println(articleFullTitle);
+		/*System.out.println(fullTextElem.text());
+		System.out.println(articleFullTitle);*/
 		return true;
 	}
 	
@@ -193,10 +194,10 @@ public class DiarioParser {
     	return newsParsedObj;
 	}
 	
-	//Wrapper around parseTopNewsObject in order to call null pointer exceptions
+	//Wrapper around parseTopNewsObject in order to catch null pointer exceptions
 	//Although it is not advised to catch null pointer exceptions in this case 
-	//it makes sense because otherwise we would be stuck checking for null a lot of times
-	//and because we can just have a #define function like is c++ I thought this was the
+	//it makes sense because otherwise we would be stuck checking for null
+	//and because we cant just have a #define function like is c++ I thought this was the
 	//best way to go
 	private NewsObject parseTopNews(Element newsElem, String section){
 		NewsObject newsParsedObj = null;

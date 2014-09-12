@@ -92,9 +92,13 @@ public class NewsObject {
 	public void setImageUrl(String imageUrl){
 		this.imageUrl = imageUrl;
 	}
-
-	public String getImageUrl(){
-		return this.imageUrl;
+	
+	public String getPreviewTitle(){
+		return this.previewTitle;
+	}
+	
+	public String getPreviewText(){
+		return previewText;
 	}
 	
 	public String getPlaceOfOccurence(){
@@ -105,24 +109,28 @@ public class NewsObject {
 		return this.topicOrSection;
 	}
 	
-	public String getSourceUrl(){
-		return this.sourceUrl;
+	public String getAuthor(){
+		return this.author;
 	}
 	
-	public String getPreviewTitle(){
-		return this.previewTitle;
+	public String getImageUrl(){
+		return this.imageUrl;
+	}
+	
+	public String getSourceUrl(){
+		return this.sourceUrl;
 	}
 	
 	public String getDate(){
 		return this.date;
 	}
 	
-	public String getPreviewText(){
-		return previewText;
+	public String getFullText(){
+		return this.fullText;
 	}
-	
-	public String getAuthor(){
-		return this.author;
+
+	public String getFullTitle(){
+		return this.fullTitle;
 	}
 	
 }

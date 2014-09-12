@@ -17,15 +17,15 @@ import org.jsoup.nodes.Element;
 public class LoteriaNacional {
 	final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 	final String const_leidsaSite = "http://www.leidsa.com/";
-	
-	static public enum lotteryType
+	Document doc = null;
+	public enum lotteryType
 	{
 		LOTERIA_NATIONAL_SORTEO_1, LOTERIA_NATIONAL_SORTEO_2,
 		PEGA_MAS, QUINIELA_PALE
 	};
 	
 	public LoteriaNacional(){
-	 
+		doc = getDoc();
 	}
 	
 	private Document getDoc(){
@@ -41,7 +41,6 @@ public class LoteriaNacional {
 	}
 	
 	public Vector<String> getLotteryNumbers(lotteryType ltr){
-		Document doc = getDoc();
 		if (doc == null) return null;
 		Elements lotBody = null;
 
@@ -53,10 +52,10 @@ public class LoteriaNacional {
 			lotBody = doc.select("#loteriaNacional").last().select(".game-results");
 			break;
 		case PEGA_MAS:
-			lotBody = doc.select("#quinielaPale").select(".game-results");
+			lotBody = doc.select("#pega123").select(".game-results");
 			break;
 		case QUINIELA_PALE:
-			lotBody = doc.select("#pega123").select(".game-results");
+			lotBody = doc.select("#quinielaPale").select(".game-results");
 			break;
 		}
 		
@@ -71,9 +70,7 @@ public class LoteriaNacional {
 	// This only applies to #loteriaNational since the others don't have a 1:30
 	// and 9:00 time
 	public String getLotteryTime(lotteryType ltr) {
-		Document doc = getDoc();
-		
-		if (doc == null) return "";
+		if (doc == null) return null;
 		Elements tmpBody = null;
 		
 		switch (ltr) {
@@ -93,7 +90,6 @@ public class LoteriaNacional {
 	}
 	
 	public String getLotteryDate(lotteryType ltr){
-		Document doc = getDoc();
 		if (doc == null) return null;
 		Elements lotBody = null;
 		
@@ -105,10 +101,10 @@ public class LoteriaNacional {
 			lotBody = doc.select("#loteriaNacional").last().select(".game-results");
 			break;
 		case PEGA_MAS:
-			lotBody = doc.select("#quinielaPale").select(".game-results");
+			lotBody = doc.select("#pega123").select(".game-results");
 			break;
 		case QUINIELA_PALE:
-			lotBody = doc.select("#pega123").select(".game-results");
+			lotBody = doc.select("#quinielaPale").select(".game-results");
 			break;
 		}
 		
