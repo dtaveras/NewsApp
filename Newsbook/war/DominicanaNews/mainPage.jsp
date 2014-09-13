@@ -15,9 +15,11 @@
 	<meta charset="utf-8">
 	<title>Dominicanos Al Dia</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="DominicanaNews/main.css">
 	<link rel="stylesheet" type="text/css" href="DominicanaNews/slideShow.css">
-	
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     
 	<script>
@@ -35,7 +37,15 @@
       var numberOfSlides = slides.length;
       var slideShowInterval;
       var speed = 10000;
+      var slideShowWidth = $('#slideshow').width();
       
+      //printInfo();
+      for(var i=0; i< numberOfSlides; i++){
+          slides[i].style.width = slideShowWidth;
+      }
+      //printInfo();
+      slideWidth = $('.slide').width();
+
       /*var containerElem = document.getElementById('page-container');
       var textDiv = document.createElement("DIV");
       var img1 = document.getElementsByTagName('img')[0];
@@ -52,7 +62,7 @@
       
       managePosition(currentPosition);
       $('.pageCount').text('1');
-      $('.buttonNav').bind('click', function() {
+      $('.pure-button').bind('click', function() {
         if(currentPosition==0 && $(this).attr('id') == 'prvButton' ){
           return;
         }
@@ -66,20 +76,29 @@
         moveSlide();
       });
 
+      function printInfo(){
+    	  var sw = $('.slide').width();
+    	  var ssw = $('#slideshow').width();
+    	  var image = $('img').width();
+          console.log("Slide Width:", sw);
+          console.log("SlideShowWidth:", ssw);
+          console.log("ImageWidth:", image)
+      }
+      
       /* Sets the color of prv and nxt button depending on which slide we are on*/
       function managePosition(position){
         $('.pageCount').text(position+1);
         if(position == 0){
-          /*$('#prvButton').css('background-color', '#f00');
-          $('#nxtButton').css('background-color', '#DFE5E9');*/
+          $('#prvButton').css('opacity', '0.3');
+          $('#nxtButton').css('opacity', '1.0');
         }
         else if(position == numberOfSlides-1){
-          /*$('#nxtButton').css('background-color', '#00f');
-          $('#prvButton').css('background-color', '#DFE5E9');*/
+          $('#nxtButton').css('opacity', '0.3');
+          $('#prvButton').css('opacity', '1.0');
         }
         else{
-           /*$('#prvButton').css('background-color', '#DFE5E9');
-           $('#nxtButton').css('background-color', '#DFE5E9');*/
+           $('#prvButton').css('opacity', '1.0');
+           $('#nxtButton').css('opacity', '1.0');
         }
       }
       
@@ -96,10 +115,13 @@
 	<div id="page-container">
 	<jsp:include page="banner.jsp"/>
 	<jsp:include page="slideshow.jsp"/>
+	<%-- <jsp:include page="loteriaTable.jsp"/> --%>
+	<div style="height:300px;">
+	</div>
 	</div>
 	
 	<script src="DominicanaNews/clampjs/clamp.js"></script>
-	<script>
+	<%--<script>
 		var numSlides = document.getElementsByClassName('slide').length;
 		var i;
 		//Clamp text to 3 lines and title to 2
@@ -109,7 +131,7 @@
 			$clamp(textElem, {clamp: 3, useNativeClamp:false, animate:false});
 			$clamp(titleElem, {clamp: 2, useNativeClamp:false, animate:false});
 		}
-	</script>
+	</script>--%>
 </body>
 
 </html>

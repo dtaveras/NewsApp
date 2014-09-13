@@ -15,14 +15,14 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 
 html {
-  /*background: #222 url("hexellence.png") repeat;*/
+  background: url("Images/fabric_plaid.png") repeat;
   background-color: #FFF;
 }
 
 footer {
     width: 96%;
     font-size: 4px;
-    margin: 2px auto;
+    margin: 2px auto; 
     border-style: dotted;
     border-color: #000000;
 }
@@ -30,6 +30,7 @@ footer {
 #banner {
     padding-bottom: 0px;
     /*border-style: solid;*/
+    
 }
 
 #banner-inner-wrapper {
@@ -37,6 +38,7 @@ footer {
     width: 100%;
     /*margin: 0.2em auto;*/
     margin: 0px;
+    
 }
 
 #banner-inner {
@@ -52,15 +54,15 @@ footer {
 #menu-nav {
     display: table-cell;
     vertical-align: bottom;
-    width: 30px;
-    
+    width: 42px;
+    text-align: center;
     background: transparent url(Images/B2.png) no-repeat 0 0;
     background-size: 70% 90%;
     background-position: center;
     background-color: #2980B9;
 	-webkit-box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);
-	box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);
+	box-shadow: inset -3px 0px 13px -6px rgba(0,0,0,0.75);*/
 }
 
 #menu-nav:active {
@@ -89,7 +91,8 @@ footer {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 22px;
-	padding: 3px;
+	padding: 5px;
+	
 /*    border-style: solid;
     border-color: #0000ff;*/
 }
@@ -165,6 +168,98 @@ footer {
 	width: 55px;
 }
 
+/**********************************************************************/
+/******************************LOTERIA*********************************/
+
+#loterias {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0;
+/*    border-style: solid;
+    border-color: #34495E;*/
+}
+
+.titulo {
+    color: #fff;
+    background-color: #34495E;/*34495E*/
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    color: #fff;
+    text-align: left;
+    padding-left: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /*border-style: solid;*/
+}
+
+/*#cell1 {
+    border-color: #34495E;
+    border-right-style: solid;
+}*/
+
+.loteria-cell {
+    background-color: #ECF0F1;
+    border-color: #34495E;
+    /*border-width: .03em;
+    border-style: solid;*/
+}
+
+.loteria-cell .loteria-logo {
+    float: left;
+    background: transparent url(Images/loteria-national.png) no-repeat 0 0;
+    background-size: 30px 12px;
+    background-position: center;
+    width: 36px;
+    height: 25px;
+    padding-left: 5px;
+    position: relative;
+    top: 5px;
+    /*border-style: solid;
+    border-color: #f00;*/
+}
+
+.loteria-cell .loteria-num {
+    color: #3498DB;
+    padding-right: 2px;
+    font-size: 18px;
+    float: right;
+    width: 50%;
+        font-weight: bold;
+    
+    text-align: center;
+    /*border-style: solid;
+    border-color: #ff0;*/
+}
+
+.loteria-cell .loteria-sorteo {
+    font-size: 4px;
+    float: right;
+    width: 50%;
+    text-align: right;
+    padding-right: 8px;
+    /*border-style: solid;
+    border-color: #0f0;*/
+}
+
+.loteria-sorteo #tiempo {
+    font-weight: bold;
+}
+
+.loteria-cell .loteria-dia {
+    color: #f00;
+    font-size: 6px;
+    float: right;
+    width: 50%;
+    text-align: right;
+    padding-right: 8px;
+    padding-bottom: 2px;
+    /*border-style: solid;
+    border-color: #00f;*/
+}
 
 
 
