@@ -7,3 +7,32 @@
 	font-family: ‘Metrophobic’, Arial, serif; 
 	font-weight: 600; 
 }
+
+.example {
+	position:relative;
+    line-height:1.4em;
+    /* 3 times the line-height to show 3 lines */
+    height: 2.8em;
+    padding: 0;
+	margin: 10px 20px;
+	overflow: hidden;
+}
+
+.example::after {
+	content:". . .";
+	background:linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+}
+
+.example2 {
+
+ overflow: hidden;
+ text-overflow: ellipsis;
+ display: -webkit-box;
+ -webkit-line-clamp: 3;
+ -webkit-box-orient: vertical;
+}
+

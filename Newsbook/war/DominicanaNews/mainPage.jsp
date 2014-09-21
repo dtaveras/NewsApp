@@ -15,123 +15,105 @@
 	<meta charset="utf-8">
 	<title>Dominicanos Al Dia</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
 	<link rel="stylesheet" type="text/css" href="DominicanaNews/main.css">
-	<link rel="stylesheet" type="text/css" href="DominicanaNews/slideShow.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    
+	<link rel="stylesheet" type="text/css" href="DominicanaNews/slideShow2.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="DominicanaNews/dotjs/jquery.dotdotdot.min.js"></script>
+
+	<link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
+	<!--<script src="http://192.168.2.10:8080/target/target-script-min.js#delvisbugging"></script>-->
+	<!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">-->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<script>
-    $( document ).ready(function() {
-    	$('h1').css('border-color','#f00');
-    });
-    </script>
-    
-    <script>
-    $(document).ready(function() {
-                   
-      var currentPosition = 0;
-      var slideWidth = $('.slide').width();
-      var slides = $('.slide');
-      var numberOfSlides = slides.length;
-      var slideShowInterval;
-      var speed = 10000;
-      var slideShowWidth = $('#slideshow').width();
-      
-      //printInfo();
-      for(var i=0; i< numberOfSlides; i++){
-          slides[i].style.width = slideShowWidth;
-      }
-      //printInfo();
-      slideWidth = $('.slide').width();
+	function setUpNavigation(){
+		var slides_obj = document.getElementsByClassName('slide');
+		var num_slides = slides_obj.length;
+		var cur_ind = 0;
+		var curmarkColor = '#3498DB';
+		var	markColor = '#BBB';
 
-      /*var containerElem = document.getElementById('page-container');
-      var textDiv = document.createElement("DIV");
-      var img1 = document.getElementsByTagName('img')[0];
-      var slide = document.getElementsByClassName("slide")[0];
-      
-      textDiv.innerHTML = $('.slide').width();
-      document.body.appendChild(textDiv);*/
-      
-      /*slideShowInterval = setInterval(changePosition, speed);*/
-      /*slides.wrapAll('<div id="slidesHolder"></div>');*/
-      /*slides.css({ 'float' : 'left' });*/
-      
-      $('#slidesHolder').css('width', slideWidth * (numberOfSlides+1));
-      
-      managePosition(currentPosition);
-      $('.pageCount').text('1');
-      $('.pure-button').bind('click', function() {
-        if(currentPosition==0 && $(this).attr('id') == 'prvButton' ){
-          return;
-        }
-        if(currentPosition == numberOfSlides-1 && $(this).attr('id') == 'nxtButton'){
-          return;
-        }
+		document.getElementsByClassName('navButtons')[0].onclick = managePosition;
+		document.getElementsByClassName('navButtons')[1].onclick = managePosition;
 
-        currentPosition = ($(this).attr('id')=='nxtButton')
-        ? currentPosition+1 : currentPosition-1;
-        managePosition(currentPosition);
-        moveSlide();
-      });
+		document.getElementsByClassName('slidemark')[cur_ind].style.borderColor = curmarkColor;
+		$('#sld0').dotdotdot();
+		$('#titl0').dotdotdot();
+		
+		manageControlBar();
+		function managePosition(){
+			//Check if we are at the start or end
+			var butAtrb = this.getAttribute('id');
+			if(butAtrb == 'prvButton' && cur_ind == 0){
+				return;
+			}
+			else if(butAtrb == 'nxtButton' && cur_ind == num_slides-1){
+				return;
+			}
+			var prv_ind = cur_ind;
+			cur_ind = (butAtrb == 'prvButton') ? cur_ind-1 : cur_ind+1;
 
-      function printInfo(){
-    	  var sw = $('.slide').width();
-    	  var ssw = $('#slideshow').width();
-    	  var image = $('img').width();
-          console.log("Slide Width:", sw);
-          console.log("SlideShowWidth:", ssw);
-          console.log("ImageWidth:", image)
-      }
-      
-      /* Sets the color of prv and nxt button depending on which slide we are on*/
-      function managePosition(position){
-        $('.pageCount').text(position+1);
-        if(position == 0){
-          $('#prvButton').css('opacity', '0.3');
-          $('#nxtButton').css('opacity', '1.0');
-        }
-        else if(position == numberOfSlides-1){
-          $('#nxtButton').css('opacity', '0.3');
-          $('#prvButton').css('opacity', '1.0');
-        }
-        else{
-           $('#prvButton').css('opacity', '1.0');
-           $('#nxtButton').css('opacity', '1.0');
-        }
-      }
-      
-      function moveSlide() {
-          $('#slidesHolder')
-            .animate({'marginLeft' : slideWidth*(-currentPosition)});
-      }
-    });
-  </script>
-  
+			var slideMarkCur = document.getElementsByClassName('slidemark')[cur_ind];
+			var slideMarkPrv = document.getElementsByClassName('slidemark')[prv_ind];
+			var slideCur = document.getElementsByClassName('slide')[cur_ind];
+			var slidePrv = document.getElementsByClassName('slide')[prv_ind];
+			
+			//update pagemark colors
+			slideMarkCur.style.borderColor = curmarkColor;
+			slideMarkPrv.style.borderColor = markColor;
+			
+			//update display
+			slidePrv.style.display = 'none';
+			slideCur.style.display = 'inline-block';
+			
+			if(cur_ind == 0){
+				$('#sld0').dotdotdot();
+				$('#titl0').dotdotdot();
+			}
+			else if(cur_ind == 1){
+				$('#sld1').dotdotdot();
+				$('#titl1').dotdotdot();
+			}
+			else if(cur_ind == 2){
+				$('#sld2').dotdotdot();
+				$('#titl2').dotdotdot();
+			}
+			
+			manageControlBar();
+		};
+		
+		function manageControlBar(){
+			if(cur_ind == 0){
+				//document.getElementById('prvButton').style.color = '#00f';
+			}
+			else{
+				//document.getElementById('prvButton').style.color = '#fff';				
+			}
+
+			if(cur_ind == num_slides-1){
+				//document.getElementById('nxtButton').style.color = '#0f0';
+			}
+			else{
+				//document.getElementById('nxtButton').style.color = '#fff';
+			}
+
+		};
+
+	};
+	
+	window.onload = setUpNavigation;
+	</script>
 </head>
 
 <body>
 	<div id="page-container">
-	<jsp:include page="banner.jsp"/>
-	<jsp:include page="slideshow.jsp"/>
-	<%-- <jsp:include page="loteriaTable.jsp"/> --%>
-	<div style="height:300px;">
-	</div>
+		<jsp:include page="banner.jsp"/>
+		<jsp:include page="slideShow2.jsp"/>
+		<%-- <jsp:include page="loteriaTable.jsp"/> --%>
+		
+		<div style="height:100px;">
+		</div>
 	</div>
 	
-	<script src="DominicanaNews/clampjs/clamp.js"></script>
-	<%--<script>
-		var numSlides = document.getElementsByClassName('slide').length;
-		var i;
-		//Clamp text to 3 lines and title to 2
-		for(i=0; i< numSlides; i++){
-			var titleElem = document.getElementsByClassName('slideTitle')[i];
-			var textElem = document.getElementsByClassName('slideText')[i];
-			$clamp(textElem, {clamp: 3, useNativeClamp:false, animate:false});
-			$clamp(titleElem, {clamp: 2, useNativeClamp:false, animate:false});
-		}
-	</script>--%>
 </body>
-
 </html>
