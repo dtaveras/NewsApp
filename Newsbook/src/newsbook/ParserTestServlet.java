@@ -2,6 +2,7 @@ package newsbook;
 
 import java.io.IOException;
 
+
 import javax.servlet.http.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +25,7 @@ import newsbook.parsers.DiarioParser;
 import newsbook.parsers.LoteriaNacional;
 import newsbook.parsers.NewsObject;
 import newsbook.parsers.LoteriaNacional.LotteryType;
+import newsbook.parsers.AbstractNewsParser.NewsSection;
 
 @SuppressWarnings("serial")
 public class ParserTestServlet extends HttpServlet {
@@ -35,25 +37,25 @@ public class ParserTestServlet extends HttpServlet {
 		String testOption = req.getParameter("TestOption");
 		if (!testOption.equals("Lottery")) {
 			DiarioParser elDiario = new DiarioParser();
-			int successRes = -1;
 			LinkedList<NewsObject> newsList = null;
-
+			int successRes = -1;
+			
 			switch (testOption) {
 			case "Education":
-				successRes = elDiario.fillEducacionNewsList();
+				successRes = elDiario.fillSection("Educacion");
 				if (successRes != 1) {
 					System.out.println("Failed to Fill EducationNewsList");
 				}
-				newsList = elDiario.getEducacionNewsList();
+				newsList = (LinkedList<NewsObject>) elDiario.getSection("Educacion").newsList;
 				System.out.println("Education");
 
 				break;
 			case "National":
-				successRes = elDiario.fillNacionalesNewsList();
+				successRes = elDiario.fillSection("Nacionales");
 				if (successRes != 1) {
 					System.out.println("Failed to Fill NationalesNewsList");
 				}
-				newsList = elDiario.getNacionalesNewsList();
+				newsList = (LinkedList<NewsObject>) elDiario.getSection("Nacionales").newsList;
 				System.out.println("National");
 
 				break;
@@ -61,8 +63,9 @@ public class ParserTestServlet extends HttpServlet {
 				System.out.println("Default");
 			}
 
-			if (successRes == 1)
+			if (successRes == 1){
 				req.setAttribute("NewsList", newsList);
+			}
 			else {
 				req.setAttribute("NewsList", null);
 			}

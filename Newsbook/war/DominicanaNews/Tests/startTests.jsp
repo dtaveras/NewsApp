@@ -5,6 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Tests Directory</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
 	<h2 style="text-decoration: underline"> Select A Test</h2>

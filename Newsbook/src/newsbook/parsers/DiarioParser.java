@@ -3,6 +3,7 @@ package newsbook.parsers;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,7 +32,9 @@ public class DiarioParser extends AbstractNewsParser{
 	}
 
 	@Override
-	void initializeSections(){
+	public void initializeSections(){
+		this.sections = new Vector<NewsSection>(3);
+		
 		NewsSection topNews = new NewsSection("TopNews", "");
 		topNews.newsList = new LinkedList<NewsObject>();
 		
@@ -297,14 +300,14 @@ public class DiarioParser extends AbstractNewsParser{
 	}
 
 	@Override
-	int fillSection(String sectionTopic){
+	public int fillSection(String sectionTopic){
 		NewsSection ns = getSection(sectionTopic);
 		if(ns == null) return -1;
 		return this.fillNewsList(ns.newsList, ns.getLink(), ns.getTopic());
 	}
 
 	@Override
-	int fillSection(int sectionInd){
+	public int fillSection(int sectionInd){
 		NewsSection ns = sections.get(sectionInd);
 		return this.fillSection(ns.getTopic());
 	}

@@ -8,7 +8,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Vector" %>
-<%@ page import="newsbook.NewsObject" %>
+<%@ page import="newsbook.parsers.NewsObject" %>
 <%@ page import="java.util.LinkedList" %>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
