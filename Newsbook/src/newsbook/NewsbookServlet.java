@@ -34,6 +34,7 @@ public class NewsbookServlet extends HttpServlet {
 		req.setAttribute("msg", 18);
 		req.setAttribute("news", "Dominicanos");
 		req.setAttribute("option", "display");
+		
 		RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher("/intro.jsp");
 		reqDispatcher.forward(req,resp);
 	}

@@ -1,4 +1,4 @@
-package newsbook;
+package newsbook.parsers;
 import java.io.IOException;
 
 import java.util.Objects;
@@ -18,7 +18,7 @@ public class LoteriaNacional {
 	final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 	final String const_leidsaSite = "http://www.leidsa.com/";
 	Document doc = null;
-	public enum lotteryType
+	public enum LotteryType
 	{
 		LOTERIA_NATIONAL_SORTEO_1, LOTERIA_NATIONAL_SORTEO_2,
 		PEGA_MAS, QUINIELA_PALE
@@ -40,7 +40,7 @@ public class LoteriaNacional {
     	return doc;
 	}
 	
-	public Vector<String> getLotteryNumbers(lotteryType ltr){
+	public Vector<String> getLotteryNumbers(LotteryType ltr){
 		if (doc == null) return null;
 		Elements lotBody = null;
 
@@ -69,7 +69,7 @@ public class LoteriaNacional {
 	
 	// This only applies to #loteriaNational since the others don't have a 1:30
 	// and 9:00 time
-	public String getLotteryTime(lotteryType ltr) {
+	public String getLotteryTime(LotteryType ltr) {
 		if (doc == null) return null;
 		Elements tmpBody = null;
 		
@@ -89,7 +89,7 @@ public class LoteriaNacional {
 		return tmpBody.select(".time-juego b").html();
 	}
 	
-	public String getLotteryDate(lotteryType ltr){
+	public String getLotteryDate(LotteryType ltr){
 		if (doc == null) return null;
 		Elements lotBody = null;
 		

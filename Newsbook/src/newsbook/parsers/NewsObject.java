@@ -1,4 +1,4 @@
-package newsbook;
+package newsbook.parsers;
 
 //NewsObject is designed mainly to allow easy access to the information about a particular article
 //parsed from a particular news website

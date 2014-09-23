@@ -1,9 +1,8 @@
-package newsbook;
-
-import newsbook.NewsObject;
+package newsbook.parsers;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,13 +10,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.*;
 import org.jsoup.select.Elements;
 
-//This class parses the site el diaro digital de la provincia de montecristi
-public class DiarioParser {
-	// The top news list can have news relating to all sections of the news
-	private LinkedList<NewsObject> topNewsList;
-	private LinkedList<NewsObject> nacionalesNewsList;
-	private LinkedList<NewsObject> educacionNewsList;
+import newsbook.parsers.AbstractNewsParser.NewsSection;
 
+//This class parses the site el diaro digital de la provincia de montecristi
+public class DiarioParser extends AbstractNewsParser{
+	// The top news list can have news relating to all sections of the news
+
+	final String const_name = "ElDiarioNews";
 	final String const_nacionales_link = "http://diariodom.com/listado/?cat=204&view=sub";
 	final String const_educacion_link = "http://diariodom.com/listado/?cat=210";
 	final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
@@ -26,11 +25,30 @@ public class DiarioParser {
 	public static final boolean DEBUG_2 = false;
 
 	public DiarioParser() {
-		topNewsList = new LinkedList<NewsObject>();
-		nacionalesNewsList = new LinkedList<NewsObject>();
-		educacionNewsList = new LinkedList<NewsObject>();
+		this.name = this.const_name;
+		this.setUrl("http://diariodom.com");
+		this.initializeSections();
 	}
 
+	@Override
+	void initializeSections(){
+		NewsSection topNews = new NewsSection("TopNews", "");
+		topNews.newsList = new LinkedList<NewsObject>();
+		
+		NewsSection nacionalesNews = new NewsSection("Nacionales", this.const_educacion_link);
+		nacionalesNews.newsList = new LinkedList<NewsObject>();
+		
+		NewsSection educacionNews = new NewsSection("Educacion", this.const_educacion_link);
+		educacionNews.newsList = new LinkedList<NewsObject>();
+		
+		//Note topNews should always be added first
+		//when parsing the other news sites it expects
+		//the section with index 0 to be topNews
+		sections.add(topNews);
+		sections.add(nacionalesNews);
+		sections.add(educacionNews);
+	}
+		
 	private boolean isTopNewsElem(Element obj) {
 		if (obj.select("p").hasClass("gk_news_intro_image")) {
 			return false;
@@ -234,9 +252,9 @@ public class DiarioParser {
 	// 0 list is already filled you need to call reset before filling up the
 	// list
 	// 1 successful
-	public int fillNewsList(LinkedList<NewsObject> list, String const_link,
+	public int fillNewsList(List<NewsObject> newsList2, String const_link,
 			String section) {
-		if (!list.isEmpty())
+		if (!newsList2.isEmpty())
 			return 0;
 
 		Document doc = null;
@@ -251,7 +269,9 @@ public class DiarioParser {
 		if (DEBUG_2) {
 			System.out.println("NumStories:" + newsList.size());
 		}
-
+		
+		//By design Top News is store in the 0th Index
+		List<NewsObject> topNewsList = sections.get(0).newsList;
 		int stIndex = 0;
 		int size = newsList.size();
 		if (isTopNewsElem(newsList.first())) {
@@ -264,7 +284,7 @@ public class DiarioParser {
 		for (int i = stIndex; i < size; i++) {
 			NewsObject tmpNewsObj = parseRegularNews(newsList, i, section);
 			if (tmpNewsObj != null) {
-				list.add(tmpNewsObj);
+				newsList2.add(tmpNewsObj);
 			}
 		}
 
@@ -276,31 +296,17 @@ public class DiarioParser {
 
 	}
 
-	public int fillNacionalesNewsList() {
-		int res = fillNewsList(this.nacionalesNewsList,
-				this.const_nacionales_link, "Nacionales");
-		return res;
+	@Override
+	int fillSection(String sectionTopic){
+		NewsSection ns = getSection(sectionTopic);
+		if(ns == null) return -1;
+		return this.fillNewsList(ns.newsList, ns.getLink(), ns.getTopic());
 	}
 
-	public void clearNacionalesNewsList() {
-		nacionalesNewsList.clear();
+	@Override
+	int fillSection(int sectionInd){
+		NewsSection ns = sections.get(sectionInd);
+		return this.fillSection(ns.getTopic());
 	}
 
-	public int fillEducacionNewsList() {
-		int res = fillNewsList(this.educacionNewsList,
-				this.const_educacion_link, "Educacion");
-		return res;
-	}
-
-	public void clearEducacionNewsList() {
-		educacionNewsList.clear();
-	}
-
-	public LinkedList<NewsObject> getNacionalesNewsList() {
-		return nacionalesNewsList;
-	}
-
-	public LinkedList<NewsObject> getEducacionNewsList() {
-		return educacionNewsList;
-	}
 }
