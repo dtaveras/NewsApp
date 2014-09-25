@@ -1,0 +1,99 @@
+#slideShowWrapper {
+	background-color: #fff;
+	padding-bottom: 3px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #DDD;
+	
+	/*box-shadow: 0 7px 6px -6px #777;*/
+	/*-webkit-box-shadow: 0px 1px 16px 0px rgba(50, 50, 50, 0.85);
+	-moz-box-shadow:    0px 1px 16px 0px rgba(50, 50, 50, 0.85);
+	box-shadow:         0px 1px 16px 0px rgba(50, 50, 50, 0.85);*/
+	
+	/*-webkit-box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.85);
+	-moz-box-shadow:    0px 2px 8px 0px rgba(50, 50, 50, 0.85);
+	box-shadow:         0px 2px 8px 0px rgba(50, 50, 50, 0.85);*/
+
+	-webkit-box-shadow: 0px -1px 8px 0px rgba(50, 50, 50, 0.39);
+	-moz-box-shadow:    0px -1px 8px 0px rgba(50, 50, 50, 0.39);
+	box-shadow:         0px -1px 8px 0px rgba(50, 50, 50, 0.39);
+}
+
+#slideShow {
+	width: 98%;
+	margin: 0 auto;
+}
+
+.slide {
+	display: none; /*Default is to not display*/
+}
+
+.slideTitle {
+	font-family: Georgia, 'Century Schoolbook', 'Times New Roman', Times, serif;
+	/*font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;*/
+	font-size: 21px;
+	margin: 0 auto;
+	width: 98%;
+	line-height: 23px;
+	height: 46px;
+	margin-bottom: 8px;
+	margin-top: 8px;
+}
+
+.slideText {
+	/*font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;*/
+	font-family: 'Raleway', sans-serif;
+	margin: 0 auto;
+	width: 98%;
+	padding-bottom: 6px;
+	font-weight: 50;
+	border-bottom-style: solid;
+	border-color: #EEE;
+	border-width: 1px;
+}
+
+.slideText p{
+	line-height: 16px;
+	height: 48px;
+}
+/******************************************************/
+/******************** SLIDESHOW CONTROLS **************/
+
+#middle-display {
+	border-style: solid;
+	display: inline-block;
+
+}
+
+#middle-inner {
+	border-style: solid;
+	margin: 0 auto;
+	border-color: #00f;
+}
+
+.slidemark {
+	display: inline-block;
+	border-style: solid;
+	border-width: 1px;
+	padding: 0px;
+	margin: 1px;
+	border-color: #CCC;
+	
+	/*background: #ffc94c;*/
+	width: 10px;
+	height: 10px;
+	/*border-radius: 1px;*/
+}
+
+.navButtons {
+	cursor: pointer;
+	border-color: #DDD;
+	color: #AAA;
+	border-style: solid;
+	border-width: 1px;
+	padding: 8px;
+}
+
+.navButtons:active {
+	border-color: #3498DB;
+}
