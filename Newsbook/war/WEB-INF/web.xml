@@ -13,7 +13,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	  <servlet-name>ParserTest</servlet-name>
 	  <servlet-class>newsbook.ParserTestServlet</servlet-class>
 	</servlet>
-
+	
+	<servlet>
+	  <servlet-name>FetchData</servlet-name>
+	  <servlet-class>newsbook.NewsbookFetchServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+	  <servlet-name>DeleteStoredData</servlet-name>
+	  <servlet-class>newsbook.CleanUpDataServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 	  <servlet-name>Newsbook</servlet-name>
 	  <url-pattern>/newsbook</url-pattern>
@@ -22,6 +32,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 	  <servlet-name>ParserTest</servlet-name>
 	  <url-pattern>/parsingtest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+	  <servlet-name>FetchData</servlet-name>
+	  <url-pattern>/fetchdata</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+	  <servlet-name>DeleteStoredData</servlet-name>
+	  <url-pattern>/deletedata</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

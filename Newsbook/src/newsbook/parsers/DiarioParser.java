@@ -15,22 +15,28 @@ import newsbook.parsers.AbstractNewsParser.NewsSection;
 
 //This class parses the site el diaro digital de la provincia de montecristi
 public class DiarioParser extends AbstractNewsParser{
+	
 	// The top news list can have news relating to all sections of the news
-
-	final String const_name = "ElDiarioNews";
-	final String const_nacionales_link = "http://diariodom.com/listado/?cat=204&view=sub";
-	final String const_educacion_link = "http://diariodom.com/listado/?cat=210";
-	final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
+	// We might wish to refer to these without instantiating an object 
+	public static final String const_name = "ElDiarioNews";
+	public static final String const_newsType = "News_Site";
+	public static final String news_sec0 = "Educacion";
+	public static final String news_sec1 = "Nacionales";
+	
+	private final String const_nacionales_link = "http://diariodom.com/listado/?cat=204&view=sub";
+	private final String const_educacion_link = "http://diariodom.com/listado/?cat=210";
+	private final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 
 	public static final boolean DEBUG = false;
 	public static final boolean DEBUG_2 = false;
-
+	
 	public DiarioParser() {
-		this.name = this.const_name;
-		this.setUrl("http://diariodom.com");
+		this.newsType = const_newsType;
+		this.name = const_name;
+		this.site_url = "http://diariodom.com";
 		this.initializeSections();
 	}
-
+	
 	@Override
 	public void initializeSections(){
 		this.sections = new Vector<NewsSection>(3);
@@ -38,11 +44,11 @@ public class DiarioParser extends AbstractNewsParser{
 		NewsSection topNews = new NewsSection("TopNews", "");
 		topNews.newsList = new LinkedList<NewsObject>();
 		
-		NewsSection nacionalesNews = new NewsSection("Nacionales", this.const_educacion_link);
-		nacionalesNews.newsList = new LinkedList<NewsObject>();
-		
-		NewsSection educacionNews = new NewsSection("Educacion", this.const_educacion_link);
+		NewsSection educacionNews = new NewsSection(news_sec0, this.const_educacion_link);
 		educacionNews.newsList = new LinkedList<NewsObject>();
+		
+		NewsSection nacionalesNews = new NewsSection(news_sec1, this.const_nacionales_link);
+		nacionalesNews.newsList = new LinkedList<NewsObject>();
 		
 		//Note topNews should always be added first
 		//when parsing the other news sites it expects
@@ -312,4 +318,17 @@ public class DiarioParser extends AbstractNewsParser{
 		return this.fillSection(ns.getTopic());
 	}
 
+	@Override
+	public int fillAllSections(){
+		int num_sections = sections.size();
+		int failed_ind = 0;
+		//0: is topNews need not be filled
+		for(int i=1; i< num_sections; i++){
+			int res = fillSection(i);
+			if(res == -1){//Failed
+				failed_ind = res+1;
+			}
+		}
+		return failed_ind;
+	}
 }

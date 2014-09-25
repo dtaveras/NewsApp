@@ -38,14 +38,13 @@ for(int newsListIndex=0; newsListIndex< numStories; newsListIndex++){
 	<h3 style="color: #A00">OBJNUM: <%= newsListIndex%></h3>
 	<div class="newsobjclass" style="border-style:solid; border-color: #00f; width: 90%;">
 		<span class="objprevtitle" style="color: #0A0">PreviewTitle:</span> <%= newsobj.getPreviewTitle() %><br>
-		
 		<!-- Full Title is hidden click preview title to show -->
 		<span class="objfulltitle" style="display: none;"><span style="color: #0A0">FullTitle:</span> 
 		<span><%= newsobj.getFullTitle()%></span><br>
 		</span>
 		
-		<span class="objprevtext" style="color: #0A0">PreviewText:</span> <%= newsobj.getPreviewText() %><br>
-		
+		<span class="objprevtext" style="color: #0A0">PreviewText:</span> <%= newsobj.getPreviewText() %>
+		<span><%= newsobj.getPreviewText().length() %> </span><br>
 		<!-- Full Text is hidden just click preview text to show -->
 		<span class="objfulltext" style="display: none;"><span style="color: #0A0">FullText:</span>
 		<span><%= newsobj.getFullText()%></span><br>
