@@ -15,17 +15,19 @@
 	<meta charset="utf-8">
 	<title>Dominicanos Al Dia</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="DominicanaNews/main.css">
-	<link rel="stylesheet" type="text/css" href="DominicanaNews/slideShow2.css">
-
+	<link rel="stylesheet" type="text/css" href="DominicanaNews/MainPage.css">
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!--
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="DominicanaNews/dotjs/jquery.dotdotdot.min.js"></script>
-
-	<link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
-	<!--<script src="http://192.168.2.10:8080/target/target-script-min.js#delvisbugging"></script>-->
-	<!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">-->
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	<script>
+	
+	<script src="http://192.168.2.10:8080/target/target-script-min.js#delvisbugging"></script>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+	-->
+	
+	<!--<script>
 	function setUpNavigation(){
 		var slides_obj = document.getElementsByClassName('slide');
 		var num_slides = slides_obj.length;
@@ -102,18 +104,17 @@
 	};
 	
 	window.onload = setUpNavigation;
-	</script>
+	</script>-->
 </head>
-
 <body>
 	<div id="page-container">
-		<jsp:include page="banner.jsp"/>
-		<jsp:include page="slideShow2.jsp"/>
+		<jsp:include page="Banner.jsp"/>
+		<jsp:include page="TopNews.jsp"/>
+		<%--<jsp:include page="slideShow2.jsp"/> --%>
 		<%-- <jsp:include page="loteriaTable.jsp"/> --%>
-		
+		<br>
 		<div style="height:100px;">
 		</div>
 	</div>
-	
 </body>
 </html>
