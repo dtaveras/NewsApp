@@ -2,6 +2,7 @@ package newsbook;
 
 import java.io.IOException;
 
+
 import javax.servlet.http.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,16 +30,16 @@ public class NewsbookFetchServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Key topKey = KeyFactory.createKey("News_Sources", "NoticiasDominicana");
-		Key siteKey = KeyFactory.createKey(topKey, DiarioParser.const_newsType, DiarioParser.const_name);
+		//Key topKey = KeyFactory.createKey("News_Sources", "NoticiasDominicana");
+		Key siteKey = KeyFactory.createKey(DiarioParser.const_NEWSTYPE, DiarioParser.const_NAME);
 		
 		Query allQuery = new Query("News_Article").setAncestor(siteKey);
 		List<Entity> hitList = datastore.prepare(allQuery).asList(FetchOptions.Builder.withLimit(20));
 		
 		resp.setContentType("text/html");
 		resp.getWriter().println("<html>");
-		resp.getWriter().println("<span>"+DiarioParser.const_newsType+"</span><br>");
-		resp.getWriter().println("<span>"+DiarioParser.const_name+"</span><br>");
+		resp.getWriter().println("<span>"+DiarioParser.const_NEWSTYPE+"</span><br>");
+		resp.getWriter().println("<span>"+DiarioParser.const_NAME+"</span><br>");
 		resp.getWriter().println("<h2>"+"HitList: "+hitList.size()+"</h2>");
 
 		Entity siteEntity;

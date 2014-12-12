@@ -110,7 +110,6 @@
 	<div id="page-container">
 		<jsp:include page="Banner.jsp"/>
 		<jsp:include page="TopNews.jsp"/>
-		<%--<jsp:include page="slideShow2.jsp"/> --%>
 		<%-- <jsp:include page="loteriaTable.jsp"/> --%>
 		<br>
 		<div style="height:100px;">

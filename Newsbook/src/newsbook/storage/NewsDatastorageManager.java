@@ -35,7 +35,7 @@ import java.util.Vector;
  */
 
 //Add all delete support
-public class NewsDataStorageManager {
+public class NewsDatastorageManager {
 	private DatastoreService datastore = null;
 	private DatastoreWrapper datastoreSecure;
 	
@@ -68,7 +68,8 @@ public class NewsDataStorageManager {
 		}
 	};
 	
-	private final String const_NS_key = "NoticiasDominicana";
+	public static final String const_topname = "NoticiasDominicana";
+	public static final String const_topkind = "News_Sources";
 	
 	public void initService(){
 		datastore = DatastoreServiceFactory.getDatastoreService();
@@ -76,23 +77,19 @@ public class NewsDataStorageManager {
 	}
 	
 	public void storeNewsData(AbstractNewsParser newsparser){
-		//Two ways of accessing the datastore the wrapper should be used in case we want 
+		//Two ways of accessing the datastore, the wrapper should be used in case we want 
 		//sane checked exceptions and the other is for general use.
 		if(datastore == null){
 			this.initService();
 		}
 		
-		Key sourceKey = KeyFactory.createKey("News_Sources", const_NS_key);
-		//check if News_Sources has been added yet
-		Entity sourceEntity = datastoreSecure.get(sourceKey);
-		if(sourceEntity == null){
-			System.out.println("Setting up News_Sources for the first time");
-			//add top directory which is News_Sources
-			sourceEntity = new Entity(sourceKey);
-			datastore.put(sourceEntity);
-		}
-		//Either News_Site or News_Blogspot
-		Key folderKey = KeyFactory.createKey(sourceKey, newsparser.getNewsType(), newsparser.getName());
+		Key sourceKey = KeyFactory.createKey(const_topkind, const_topname);
+		
+		Entity sourceEntity = new Entity(sourceKey);
+		datastore.put(sourceEntity);
+		
+		//News Type is either News_Site or News_Blogspot
+		Key folderKey = KeyFactory.createKey(newsparser.getNewsType(), newsparser.getName());
 		
 		Entity newsfolder = new Entity(folderKey);
 		newsfolder.setProperty("dateAdded", new Date());
@@ -104,8 +101,9 @@ public class NewsDataStorageManager {
 		int numSec = newsSec.size();
 		for(int i=0; i< numSec; i++){
 			NewsSection ns = newsSec.get(i);
-			Entity secEntity = new Entity("News_Section",folderKey);
-			secEntity.setProperty("Topic", ns.getTopic());
+			
+			Key secKey = KeyFactory.createKey(folderKey, "News_Section", ns.getTopic());
+			Entity secEntity = new Entity(secKey);
 			datastore.put(secEntity);
 			
 			Iterator<NewsObject> nsItr = ns.newsList.iterator();
@@ -135,12 +133,13 @@ public class NewsDataStorageManager {
 		}
 		
 		entity.setProperty("previewTitle", newsobj.getPreviewTitle());
-		//fullTextObj is greater than 500 chars
+		//fullTextObj is assumed to always be greater than 500 chars
 		Text fullTextObj = new Text(newsobj.getFullText());
 		entity.setProperty("fullText", fullTextObj);
 		entity.setProperty("fullTitle", newsobj.getFullTitle());
 		entity.setProperty("imageUrl", newsobj.getImageUrl());
 		entity.setProperty("sourceUrl", newsobj.getSourceUrl());
+		entity.setProperty("dateAdded", new Date());
 		return 1;
 	}
 	

@@ -1,0 +1,11 @@
+#page-container {
+	background-color: #fff;
+}
+
+
+@media (min-width: 600px) {
+	#page-container {
+		width: 600px;
+		margin: 0 auto;
+	}
+}

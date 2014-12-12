@@ -156,11 +156,14 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 #source-wrapper {
 	width: 96%;
+	border-style:solid;
 	margin: 4px auto;
 	margin-left: 10px;
 }
 
 #topnews-source {
+	display: inline-block;
+	border-style: solid;
 	font-size: 12px;
 	font-family: 'Raleway', sans-serif;
 	color: #777;
@@ -222,16 +225,16 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .section-title {
 	width: 94%;
 	margin: 0 auto;
+	
 	border-bottom-style: solid;
-	/*color: #6E6E6E;*/
 	border-color: #DDD;
 	padding-top: 10px;
 	margin-bottom: 12px;
-	text-indent: 10px;
+	
+	text-indent: 0px;
+	
 	font-size: 20px;
-	/*font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;*/
 	font-family: 'Raleway', sans-serif;
-		
 	font-weight: bold;	
 }
 
@@ -265,9 +268,6 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .article-info {
 	display: inline-block;
 	margin-bottom: 3px;
-}
-
-.news-article .article-info {
 	font-size: 10px;
 	font-family: 'Raleway', sans-serif;
 }
@@ -281,13 +281,14 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .news-article .article-title {
 	line-height: 14px;
 	font-family: Georgia, serif;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	font-size: 14px;
 }
+
 /* Text */
 .news-article .article-text {
 	line-height: 14px;
-	font-size: 11px;
+	font-size: 10px;
 	font-family: 'Raleway', sans-serif;
 	/*color: rgb(96, 96, 96);*/
 	margin-top: 5px;

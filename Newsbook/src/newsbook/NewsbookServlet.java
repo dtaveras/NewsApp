@@ -39,7 +39,7 @@ public class NewsbookServlet extends HttpServlet {
 			return;
 		}
 
-		NewsDataStorageManager datamanager = new NewsDataStorageManager();
+		NewsDatastorageManager datamanager = new NewsDatastorageManager();
 		datamanager.storeNewsData(elDiarioNews);
 
 		resp.getWriter().println("<h2 style='color: #0f0'>Stored Data!!!<h2>");

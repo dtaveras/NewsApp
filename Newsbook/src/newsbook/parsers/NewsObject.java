@@ -3,7 +3,7 @@ package newsbook.parsers;
 //NewsObject is designed mainly to allow easy access to the information about a particular article
 //parsed from a particular news website
 public class NewsObject {
-	boolean isTopNews;
+	boolean isTopNews = false;
 	private String previewTitle;
 	private String previewText; // Contains the body of the news story
 	private String placeOfOccurence;
@@ -37,13 +37,7 @@ public class NewsObject {
 	}
 
 	public void printAllInfo() {
-		System.out.println("\n-----------------------------------------------");
-		if (isTopNews) {
-			System.out.println("TOP NEWS");
-		} else {
-			System.out.println("REGULAR NEWS");
-		}
-
+		System.out.println("-----------------------------------------------");
 		System.out.println("Titulo: " + this.previewTitle);
 		System.out.println("Text: " + this.previewText);
 		System.out.println("Ciudad: " + this.placeOfOccurence);
@@ -51,7 +45,7 @@ public class NewsObject {
 		System.out.println("Date: " + this.date);
 		System.out.println("SourceUrl: " + this.sourceUrl);
 		System.out.println("ImageUrl: " + this.imageUrl);
-		System.out.println("------------------------------------------------");
+		System.out.println("------------------------------------------------\n");
 	}
 
 	// prints the Object

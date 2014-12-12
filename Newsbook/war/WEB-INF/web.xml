@@ -23,6 +23,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	  <servlet-name>DeleteStoredData</servlet-name>
 	  <servlet-class>newsbook.CleanUpDataServlet</servlet-class>
 	</servlet>
+
+	<servlet>
+	    <servlet-name>UpdateDisplayArticle</servlet-name>
+	    <servlet-class>newsbook.UpdateArticleServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>UpdateDisplayArticle</servlet-name>
+	    <url-pattern>/updatedisplay</url-pattern>
+	</servlet-mapping>	
 	
 	<servlet-mapping>
 	  <servlet-name>Newsbook</servlet-name>

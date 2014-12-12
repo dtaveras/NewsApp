@@ -9,13 +9,12 @@
 			</td>
 		</tr>		
 	</table>
-	
 	<div id="topnews-story" >
 		<div id="img-wrapper">
 			<img id="topImg" style="height:200px;"src="DominicanaNews/Images/slide3.jpg" />
 		</div>
 		
-		<div id="source-wrapper"><i style="color:#DDD; padding-right: 4px;"class="fa fa-newspaper-o"></i><span id="topnews-source">El Diario News</span></div>
+		<div id="source-wrapper"><i style="color:#DDD; border-style:solid;" class="fa fa-newspaper-o"></i><div id="topnews-source">El Diario News</div></div>
 		
 		<div id="topnews-title">
 			El correcto lavado de manos ayuda a evitar enfermedades
