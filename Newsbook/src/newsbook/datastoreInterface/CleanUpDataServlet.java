@@ -1,4 +1,4 @@
-package newsbook;
+package newsbook.datastoreInterface;
 
 import java.io.IOException;
 
@@ -36,8 +36,10 @@ public class CleanUpDataServlet extends HttpServlet {
 		//Kindless query for keys only and delete all Entities
 		List<Entity> keysList= datastore.prepare(new Query().setKeysOnly()).asList(FetchOptions.Builder.withLimit(100));
 		int totalDeleted = 0;
+		
 		while(keysList.size() > 0){
 			totalDeleted += keysList.size();
+			
 			Iterator<Entity> entItr = keysList.iterator();
 			while(entItr.hasNext()){
 				Key k = entItr.next().getKey();

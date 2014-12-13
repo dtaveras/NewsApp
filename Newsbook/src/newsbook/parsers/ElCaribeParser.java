@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
+import newsbook.parsersDependencies.AbstractNewsParser;
+import newsbook.parsersDependencies.NewsObject;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,12 +15,13 @@ import org.jsoup.select.Elements;
 
 public class ElCaribeParser extends AbstractNewsParser{
 
-	public static final String const_Name = "ElCaribeNews";
+	public static final String const_NAME = "ElCaribeNews";
 	public static String const_NEWSTYPE;
 	
 	public static final String NEWS_SEC0 = "Panorama";
 	public static final String NEWS_SEC1 = "Deportes";
 	
+	//The links refer to the archives and parses three days worth of articles
 	private final String NEWSEC0_LINK = "http://www.elcaribe.com.do/archivos?palabras=todas&seccion=Panorama&antiguedad=3+d%C3%ADas&multimedia=Art%C3%ADculo&buscaren=titulo";
 	private final String NEWSEC1_LINK = "http://www.elcaribe.com.do/archivos?palabras=todas&seccion=Deportes&antiguedad=3+d%C3%ADas&multimedia=Art%C3%ADculo&buscaren=titulo";
 	private final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
@@ -27,7 +31,9 @@ public class ElCaribeParser extends AbstractNewsParser{
 		//set the news type
 		this.newsType = NEWSTYPE.NEWS_SITE;
 		const_NEWSTYPE = this.getNewsType();
+		
 		this.site_url = "http://www.elcaribe.com.do/";
+		this.name = const_NAME;
 		this.initializeSections();
 	}
 	

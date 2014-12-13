@@ -2,7 +2,6 @@ package newsbook;
 
 import java.io.IOException;
 
-
 import javax.servlet.http.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,9 +22,9 @@ import java.util.Enumeration;
 import newsbook.*;
 import newsbook.parsers.DiarioParser;
 import newsbook.parsers.LoteriaNacional;
-import newsbook.parsers.NewsObject;
 import newsbook.parsers.LoteriaNacional.LotteryType;
-import newsbook.parsers.AbstractNewsParser.NewsSection;
+import newsbook.parsersDependencies.NewsObject;
+import newsbook.parsersDependencies.AbstractNewsParser.NewsSection;
 
 @SuppressWarnings("serial")
 public class ParserTestServlet extends HttpServlet {

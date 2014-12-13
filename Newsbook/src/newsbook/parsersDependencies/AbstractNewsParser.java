@@ -1,4 +1,4 @@
-package newsbook.parsers;
+package newsbook.parsersDependencies;
 
 import java.io.IOException;
 import java.util.EnumMap;
@@ -24,7 +24,7 @@ public abstract class AbstractNewsParser {
 	//however I wanted that when I returned the type that it should be of type string
 	private EnumMap<NEWSTYPE, String> newsTypeMap;
 	
-	AbstractNewsParser(){
+	protected AbstractNewsParser(){
 		newsTypeMap = new EnumMap<NEWSTYPE, String>(NEWSTYPE.class);
 		newsTypeMap.put(NEWSTYPE.NEWS_SITE, "News_Site");
 		newsTypeMap.put(NEWSTYPE.NEWS_BLOGSPOT, "News_Blogspot");
@@ -110,16 +110,23 @@ public abstract class AbstractNewsParser {
 		return nameVect;
 	}
 	
+	public void printAllInfo(){
+		int sz = this.sections.size();
+		for(int i=0; i< sz; i++){
+			this.sections.get(i).printAllArticlesInfo();
+		}
+	}
+	
 	//This function should intiliaze all the sections of the news parser
 	abstract public void initializeSections();
+	
+	//true: all links worked 
+	//false: some linked failed
+	//checks whether we are able to connect to the links used for parsing
+	abstract public boolean checkLinks();
 	
 	abstract public int fillSection(String sectionTopic);
 	abstract public int fillSection(int sectionInd);
 	
 	abstract public int fillAllSections();
-	
-	//true: all links worked 
-	//false: some linked failed
-	//checks whether we are able to connect to the links used for parsing
-	abstract boolean checkLinks();
 }

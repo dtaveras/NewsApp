@@ -2,7 +2,7 @@ package newsbook.parsers.unittests;
 
 import static org.junit.Assert.*;
 import newsbook.parsers.*;
-import newsbook.parsers.AbstractNewsParser.NewsSection;
+import newsbook.parsersDependencies.AbstractNewsParser.NewsSection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +17,7 @@ public class ParserUnitTests {
 
 	DiarioParser diarioParser;
 	ElCaribeParser elCaribeParser;
+	ElListinParser elListinParser;
 	
 	/*public void test() {
 		fail("Not yet implemented");
@@ -27,6 +28,7 @@ public class ParserUnitTests {
 		System.out.println("Prepared for testing \n");
 		diarioParser = new DiarioParser();
 		elCaribeParser = new ElCaribeParser();
+		elListinParser = new ElListinParser();
 	}
 	
 	private boolean checkForConnection(){
@@ -111,10 +113,29 @@ public class ParserUnitTests {
 		newsSectionVect.get(1).printAllArticlesInfo();
 	}
 	
+	public void testConnectionAndLinksListin(){
+		System.out.println("Connection and Links Test ....");
+		
+		assertTrue(checkForConnection());
+		System.out.println("Connection seems to be working");
+		
+		assertTrue(elListinParser.checkLinks());
+		System.out.println("Links all seem to be working");
+	}
 	
-	//@Test
+	public void testElListinParser(){
+		System.out.println("Testing ElListinParser ....");
+		elListinParser.fillAllSections();
+		
+		Vector<NewsSection> newsSectionVect = elListinParser.getSections();
+		
+		newsSectionVect.get(0).printAllArticlesInfo();
+		newsSectionVect.get(1).printAllArticlesInfo();
+	}
+	
+	@Test
 	public void testAll(){
-		testConnectionAndLinksCaribe();
-		testElCaribeParsing();
+		testConnectionAndLinksListin();
+		testElListinParser();
 	}
 }

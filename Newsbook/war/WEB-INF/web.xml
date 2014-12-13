@@ -6,7 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 	  <servlet-name>Newsbook</servlet-name>
-	  <servlet-class>newsbook.NewsbookServlet</servlet-class>
+	  <servlet-class>newsbook.NewsbookStoreNewsServlet</servlet-class>
 	</servlet>
 
 	<servlet>

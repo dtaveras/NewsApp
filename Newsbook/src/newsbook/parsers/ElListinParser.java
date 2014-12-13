@@ -1,11 +1,14 @@
 package newsbook.parsers;
 
 import java.util.Calendar;
+
 import java.util.LinkedList;
 import java.util.TimeZone;
 import java.util.Vector;
 
-import newsbook.parsers.AbstractNewsParser.NewsSection;
+import newsbook.parsersDependencies.AbstractNewsParser;
+import newsbook.parsersDependencies.NewsObject;
+import newsbook.parsersDependencies.AbstractNewsParser.NewsSection;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -46,7 +49,7 @@ public class ElListinParser extends AbstractNewsParser{
 	}
 	
 	@Override
-	boolean checkLinks() {
+	public boolean checkLinks() {
 		Document doc = null;
 		
 		doc = this.getDoc(this.NEWS_SEC0_LINK);
@@ -88,9 +91,6 @@ public class ElListinParser extends AbstractNewsParser{
   		String articleTitle = doc.select(".result-title > a").get(index).text();
   		String articlePreviewText = doc.select(".result-summary").get(index).text();
   		String articleLink = doc.select(".result-title > a").get(index).attr("abs:href");
-  		System.out.println(articleTitle);
-  		System.out.println(articlePreviewText);
-  		System.out.println(articleLink);
   		
   		doc = this.getDoc(articleLink);
   		
@@ -108,7 +108,11 @@ public class ElListinParser extends AbstractNewsParser{
   		
   		String date = doc.select(".art_sly_1 > span").first().text();
   		Element articleImgElem = doc.select(".art_body").select("img").first();
-  		String articleImgLink = articleImgElem.attr("abs:src");
+  		String articleImgLink = "";
+  		if(articleImgElem != null){
+  			articleImgLink = articleImgElem.attr("abs:src");
+  		}
+  		
   		String articleFullText = doc.select("#ArticleBody").first().text();
 
   		NewsObject parsedNewsObject = new NewsObject(articleTitle, articlePreviewText,
@@ -124,12 +128,14 @@ public class ElListinParser extends AbstractNewsParser{
 	
 	private NewsObject parseRegularNewsWrapper(Document doc, int index, String section){
 		NewsObject parsedNewsObj = null;
-		try {
+		/*try {
 			parsedNewsObj = parseRegularNews(doc, index, section);
 		} catch (NullPointerException e) {
 			System.out.println("ParseRegularNews Failed!!");
 			return null;
-		}
+		}*/
+		parsedNewsObj = parseRegularNews(doc, index, section);
+
 		return parsedNewsObj;
 	}
 	
@@ -137,12 +143,14 @@ public class ElListinParser extends AbstractNewsParser{
 		TimeZone drTZ = TimeZone.getTimeZone("America/Santo_Domingo");
   		Calendar today = new java.util.GregorianCalendar(drTZ);
   		
-  		int day_of_month = today.get(Calendar.DAY_OF_MONTH);
+  		int day_of_month = today.get(Calendar.DAY_OF_MONTH) - 1;
   		int month = today.get(Calendar.MONTH)+1; //starts at 0
   		int year = today.get(Calendar.YEAR);
+  		System.out.println("Day: " + day_of_month + " Month: " + month + " Year: " + year);
   		
   		String updatedLink = updateListinUrl(ns.getLink(), day_of_month,
   											month, year);
+  		System.out.println(updatedLink);
   		Document doc = this.getDoc(updatedLink);
   		int numArticles = doc.select(".result-summary").size();
   		
@@ -190,7 +198,6 @@ public class ElListinParser extends AbstractNewsParser{
 		
 		return 1;
 	}
-
 
 
 }

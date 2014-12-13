@@ -1,7 +1,6 @@
 package newsbook.parsers;
 
 import java.io.IOException;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -12,7 +11,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.*;
 import org.jsoup.select.Elements;
 
-import newsbook.parsers.AbstractNewsParser.NewsSection;
+import newsbook.parsersDependencies.AbstractNewsParser;
+import newsbook.parsersDependencies.NewsObject;
+import newsbook.parsersDependencies.AbstractNewsParser.NewsSection;
 
 //This class parses the site el diaro digital de la provincia de montecristi
 public class DiarioParser extends AbstractNewsParser{

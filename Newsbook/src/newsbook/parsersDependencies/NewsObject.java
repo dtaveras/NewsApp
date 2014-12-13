@@ -1,9 +1,9 @@
-package newsbook.parsers;
+package newsbook.parsersDependencies;
 
 //NewsObject is designed mainly to allow easy access to the information about a particular article
 //parsed from a particular news website
 public class NewsObject {
-	boolean isTopNews = false;
+	public boolean isTopNews = false;
 	private String previewTitle;
 	private String previewText; // Contains the body of the news story
 	private String placeOfOccurence;

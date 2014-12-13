@@ -22,9 +22,9 @@ import java.util.Enumeration;
 
 import newsbook.parsers.DiarioParser;
 import newsbook.parsers.LoteriaNacional;
-import newsbook.parsers.NewsObject;
 import newsbook.parsers.LoteriaNacional.LotteryType;
-import newsbook.parsers.AbstractNewsParser.NewsSection;
+import newsbook.parsersDependencies.NewsObject;
+import newsbook.parsersDependencies.AbstractNewsParser.NewsSection;
 
 @SuppressWarnings("serial")
 public class UpdateArticleServlet extends HttpServlet {

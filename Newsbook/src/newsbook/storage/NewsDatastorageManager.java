@@ -1,21 +1,22 @@
 package newsbook.storage;
 
 import newsbook.parsers.*;
-import newsbook.parsers.AbstractNewsParser.NewsSection;
+import newsbook.parsersDependencies.AbstractNewsParser;
+import newsbook.parsersDependencies.NewsObject;
+import newsbook.parsersDependencies.AbstractNewsParser.NewsSection;
 
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Vector;
+
+import com.google.appengine.api.datastore.DatastoreFailureException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.DatastoreFailureException;
 import com.google.appengine.api.datastore.Text;
-
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Vector;
 /**
  * 
  * @author delvistaveras
@@ -82,11 +83,6 @@ public class NewsDatastorageManager {
 		if(datastore == null){
 			this.initService();
 		}
-		
-		Key sourceKey = KeyFactory.createKey(const_topkind, const_topname);
-		
-		Entity sourceEntity = new Entity(sourceKey);
-		datastore.put(sourceEntity);
 		
 		//News Type is either News_Site or News_Blogspot
 		Key folderKey = KeyFactory.createKey(newsparser.getNewsType(), newsparser.getName());
