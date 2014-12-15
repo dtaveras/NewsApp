@@ -17,7 +17,7 @@ import org.jsoup.select.Elements;
 public class ElListinParser extends AbstractNewsParser{
 
 	public static final String NAME = "ElListinNews";
-	public static String const_NEWSTYPE;
+	public static final String NEWSTYPE = "News_Source";
 	
 	private static final String NEWS_SEC0 = "Entretenimiento";
 	private static final String NEWS_SEC1 = "El Deporte";
@@ -27,10 +27,8 @@ public class ElListinParser extends AbstractNewsParser{
 
 	public ElListinParser(){
 		super();
-		this.newsType = NEWSTYPE.NEWS_SITE;
-		const_NEWSTYPE = this.getNewsType();
-		
 		this.name = NAME;
+		this.newsType = NEWSTYPE;
 		this.site_url = "http://www.listindiario.com/";
 		this.initializeSections();
 	}

@@ -45,7 +45,7 @@ public class ParserTestServlet extends HttpServlet {
 				if (successRes != 1) {
 					System.out.println("Failed to Fill EducationNewsList");
 				}
-				newsList = (LinkedList<NewsObject>) elDiario.getSection("Educacion").newsList;
+				newsList = (LinkedList<NewsObject>) elDiario.getSection("TopNews").newsList;
 				System.out.println("Education");
 
 				break;

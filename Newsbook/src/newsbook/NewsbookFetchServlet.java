@@ -31,15 +31,15 @@ public class NewsbookFetchServlet extends HttpServlet {
 			throws IOException, ServletException {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		//Key topKey = KeyFactory.createKey("News_Sources", "NoticiasDominicana");
-		Key siteKey = KeyFactory.createKey(DiarioParser.const_NEWSTYPE, DiarioParser.const_NAME);
+		Key siteKey = KeyFactory.createKey(DiarioParser.NEWSTYPE, DiarioParser.NAME);
 		
 		Query allQuery = new Query("News_Article").setAncestor(siteKey);
 		List<Entity> hitList = datastore.prepare(allQuery).asList(FetchOptions.Builder.withLimit(20));
 		
 		resp.setContentType("text/html");
 		resp.getWriter().println("<html>");
-		resp.getWriter().println("<span>"+DiarioParser.const_NEWSTYPE+"</span><br>");
-		resp.getWriter().println("<span>"+DiarioParser.const_NAME+"</span><br>");
+		resp.getWriter().println("<span>"+DiarioParser.NEWSTYPE+"</span><br>");
+		resp.getWriter().println("<span>"+DiarioParser.NAME+"</span><br>");
 		resp.getWriter().println("<h2>"+"HitList: "+hitList.size()+"</h2>");
 
 		Entity siteEntity;

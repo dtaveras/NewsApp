@@ -6,7 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 	  <servlet-name>Newsbook</servlet-name>
-	  <servlet-class>newsbook.NewsbookStoreNewsServlet</servlet-class>
+	  <servlet-class>newsbook.datastoreInterface.NewsbookStoreNewsServlet</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -21,7 +21,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 	  <servlet-name>DeleteStoredData</servlet-name>
-	  <servlet-class>newsbook.CleanUpDataServlet</servlet-class>
+	  <servlet-class>newsbook.datastoreInterface.CleanUpDataServlet</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -31,7 +31,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet-mapping>
 	    <servlet-name>UpdateDisplayArticle</servlet-name>
-	    <url-pattern>/updatedisplay</url-pattern>
+	    <url-pattern>/updatearticle</url-pattern>
 	</servlet-mapping>	
 	
 	<servlet-mapping>

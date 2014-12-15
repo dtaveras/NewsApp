@@ -59,15 +59,18 @@ public class NewsbookStoreNewsServlet extends HttpServlet {
 		newsParser = new DiarioParser();
 		res = newsParser.fillAllSections();
 		this.printAndStoreResult(resp, newsParser, storageManager, res);
+		System.out.println("ElDiario NewsObjects finished adding.");
 		
 		newsParser = new ElCaribeParser();
 		res = newsParser.fillAllSections();
 		this.printAndStoreResult(resp, newsParser, storageManager, res);
+		System.out.println("ElCaribe NewsObjects finished adding.");
 		
 		newsParser = new ElListinParser();
 		res = newsParser.fillAllSections();
 		this.printAndStoreResult(resp, newsParser, storageManager, res);
-
+		System.out.println("ElListin NewsObjects finished adding.");
+		
 		resp.getWriter().println("</html>");
 	}
 }

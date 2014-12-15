@@ -15,8 +15,8 @@ import org.jsoup.select.Elements;
 
 public class ElCaribeParser extends AbstractNewsParser{
 
-	public static final String const_NAME = "ElCaribeNews";
-	public static String const_NEWSTYPE;
+	public static final String NAME = "ElCaribeNews";
+	public static final String NEWSTYPE = "News_Source";
 	
 	public static final String NEWS_SEC0 = "Panorama";
 	public static final String NEWS_SEC1 = "Deportes";
@@ -28,12 +28,9 @@ public class ElCaribeParser extends AbstractNewsParser{
 
 	public ElCaribeParser(){
 		super();
-		//set the news type
-		this.newsType = NEWSTYPE.NEWS_SITE;
-		const_NEWSTYPE = this.getNewsType();
-		
+		this.name = NAME;
+		this.newsType = NEWSTYPE;
 		this.site_url = "http://www.elcaribe.com.do/";
-		this.name = const_NAME;
 		this.initializeSections();
 	}
 	

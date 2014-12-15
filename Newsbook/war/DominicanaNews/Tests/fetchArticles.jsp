@@ -100,6 +100,34 @@
 				article.num = article.num + 1;
 				$('#artnum').text(article.num);
 			}
+			/*<div class="news-article">
+			<div class="section">
+				<div class="title">PreviewTitle:</div>
+				<span class="text">Peligro Castillo piensa traer ...</span>
+			</div>*/
+
+			function addArticle(jsonObj){
+				console.log("\nAdding Article ...");
+				console.log(jsonObj);
+				var $articleContainer = $('.article-container');
+				var $article = $("<div>", {class: "news-article"});
+				
+				//for each key value pair 
+				$.each(jsonObj, function(key, value){
+					var $section = $("<div>", {class: "section"});
+					var $title = $("<div>", {class: "title", text: "previewTitle:"});
+					$title.text(key + ":");
+					var $textSpan = $("<span>", {class: "text"});
+					$textSpan.append(" "+value);
+					
+					$section.append($title);
+					$section.append($textSpan);
+					$article.append($section)
+				});
+				//done
+				$articleContainer.append($article);
+				$articleContainer.append("<br>")
+			}
 			
 			$(document).ready(function(){
 				$('#submit').click(function(event){
@@ -107,15 +135,28 @@
 					var username = "DelvisTaveras";
 					var username2 = "JohnDoe";
 					
-					$.get('/updatedisplay',{user:username, user2:username2},function(responseText) {
+					/*$.get('/updatearticle',{user:username, user2:username2},function(responseText) {
 						$('#respText').text(responseText);
 						console.log(responseText);
-                    });
+                    })
+                    .done(function() {
+                        alert( "second success" );
+                    })
+                    .fail(function() {
+                      alert( "error" );
+                    })
+                    .always(function() {
+                      alert( "finished" );
+                    });*/
+                    $.getJSON('/updatearticle', function( data ) {
+                    	console.log(data);
+                    	addArticle(data);
+                    	});
 					//the default submit causes the page to refresh which we don't want in
 					//this case
 					event.preventDefault();
 				});
-				printFormData();
+				//printFormData();
 			});
 			
 		</script>
@@ -123,9 +164,20 @@
 	<body>
 		<div id="page-container">
 		<br>
-		<span id="artnum-wrapper">   <span id="artnum-title">Article Number: </span>   <span id="artnum">0</span>   </span>
-		<br><br>
-		<div class="news-article">
+		<form name="fetchOptions">
+			Source: <select name="News_Source"></select>
+			Sections: <select name="Sections"></select>
+			<input type="submit" id="submit" value="Submit">
+		</form>
+		<br>
+		<!--<div id="respText"></div>
+		<button onclick="addArticle()">
+			AddArticle
+		</button><br>-->
+		<br>
+		<div><span id="artnum-wrapper">   <span id="artnum-title">Article Number: </span>   <span id="artnum">0</span>   </span></div><br>
+		<div class="article-container"></div>
+		<!--<div class="news-article">
 			<div class="section">
 				<div class="title">PreviewTitle:</div>
 				<span class="text">Peligro Castillo piensa traer ...</span>
@@ -154,7 +206,7 @@
 			
 			<div class="section">
 				<div class="title">Source Url:</div>
-				<span class="text"><a href=<%="http://diariodom.com/noticias/index.php?id=114272" %>>http://diariodom.com/noticias/index.php?id=114272</a></span>
+				<span class="text"><a href="http://diariodom.com/noticias/index.php?id=114272">http://diariodom.com/noticias/index.php?id=114272</a></span>
 			</div>
 			
 			<div class="section">
@@ -166,13 +218,9 @@
 				<div class="title">PreviewText</div>
 				<span class="text">.- El ministro de Energia y Minas, Pelegrin Castillo, anuncio este lunes que gestiona con entidades educativas ...</span>
 			</div>	
-		</div>
+		</div>-->
 		<br>
-		<form name="fetchOptions">
-			Source: <select name="News_Source"></select>
-			Sections: <select name="Sections"></select>
-			<input type="submit" id="submit" value="Submit">
-		</form>
+
 		<script>
 			var formData = [{value:"EldiarioNews",name:"El Diario", sections:[{name:"TopNews",num:-1},{name:"Educacion",num:-1},{name:"Nacionales",num:-1}] },
 			                {value:"blogspot",name:"Blogspot", sections:[{name:"Sect1",num:-1},{name:"Sect2",num:-1}]}
@@ -217,13 +265,7 @@
 			
 			main();
 		</script>
-		<div id="respText"></div>
-		<button onclick="printFormData()">
-			PrintForm
-		</button>
-		<button onclick="incrementArticleNum()">
-			Increment
-		</button>
+
 		<!--
 		<script>
 			function printFormValues(){

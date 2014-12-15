@@ -10,25 +10,10 @@ import org.jsoup.nodes.Document;
 
 public abstract class AbstractNewsParser {
 	protected String name;
+	protected String newsType;
 	protected String site_url;
-	protected NEWSTYPE newsType;
 	protected Vector<NewsSection> sections;
 	protected final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
-
-	//The newstype enum and string should be in corresponding order
-	protected enum NEWSTYPE {
-		NEWS_SITE, NEWS_BLOGSPOT
-	}
-	
-	//This was created because I wanted subclasses to use an Enum to select the type
-	//however I wanted that when I returned the type that it should be of type string
-	private EnumMap<NEWSTYPE, String> newsTypeMap;
-	
-	protected AbstractNewsParser(){
-		newsTypeMap = new EnumMap<NEWSTYPE, String>(NEWSTYPE.class);
-		newsTypeMap.put(NEWSTYPE.NEWS_SITE, "News_Site");
-		newsTypeMap.put(NEWSTYPE.NEWS_BLOGSPOT, "News_Blogspot");
-	}
 	
 	//NewsSection Class and really the heart of the parser
 	public class NewsSection{
@@ -81,7 +66,7 @@ public abstract class AbstractNewsParser {
 	}
 	
 	public String getNewsType(){
-		return newsTypeMap.get(newsType);
+		return this.newsType;
 	}
 	
 	public Vector<NewsSection> getSections(){

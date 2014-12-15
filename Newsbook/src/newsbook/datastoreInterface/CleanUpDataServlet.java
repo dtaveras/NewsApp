@@ -30,7 +30,8 @@ import newsbook.storage.*;
 public class CleanUpDataServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		System.out.println("CLEAN UP TIME!!");
+		System.out.println("CLEAN UP TIME!! Inside Cleanup Servlet");
+		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		
 		//Kindless query for keys only and delete all Entities

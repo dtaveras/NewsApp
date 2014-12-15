@@ -84,7 +84,6 @@ public class NewsDatastorageManager {
 			this.initService();
 		}
 		
-		//News Type is either News_Site or News_Blogspot
 		Key folderKey = KeyFactory.createKey(newsparser.getNewsType(), newsparser.getName());
 		
 		Entity newsfolder = new Entity(folderKey);

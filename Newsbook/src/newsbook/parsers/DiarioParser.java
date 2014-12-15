@@ -1,6 +1,7 @@
 package newsbook.parsers;
 
 import java.io.IOException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -21,25 +22,23 @@ public class DiarioParser extends AbstractNewsParser{
 	// The top news list can have news relating to all sections of the news
 	// We might wish to refer to these without instantiating an object hence that
 	// is why there are made static
-	public static final String const_NAME = "ElDiarioNews";
-	public static String const_NEWSTYPE;
+	public static final String NAME = "ElDiarioNews";
+	public static final String NEWSTYPE = "News_Source";
 	
-	public static final String const_NEWS_SEC0 = "Educacion";
-	public static final String const_NEWS_SEC1 = "Nacionales";
+	public static final String NEWS_SEC0 = "Educacion";
+	public static final String NEWS_SEC1 = "Nacionales";
 	
 	private final String const_nacionales_link = "http://diariodom.com/listado/?cat=204&view=sub";
 	private final String const_educacion_link = "http://diariodom.com/listado/?cat=210";
-	private final String const_ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 
 	public static final boolean DEBUG = false;
 	public static final boolean DEBUG_2 = false;
 	
 	public DiarioParser() {
 		super();//abstract class initializes the enumMap
-		this.newsType = NEWSTYPE.NEWS_SITE;
-		const_NEWSTYPE = this.getNewsType();
+		this.name = NAME;
+		this.newsType = NEWSTYPE;
 		
-		this.name = const_NAME;
 		this.site_url = "http://diariodom.com";
 		this.initializeSections();
 	}
@@ -64,10 +63,10 @@ public class DiarioParser extends AbstractNewsParser{
 		NewsSection topNews = new NewsSection("TopNews", "");
 		topNews.newsList = new LinkedList<NewsObject>();
 		
-		NewsSection educacionNews = new NewsSection(const_NEWS_SEC0, this.const_educacion_link);
+		NewsSection educacionNews = new NewsSection(NEWS_SEC0, this.const_educacion_link);
 		educacionNews.newsList = new LinkedList<NewsObject>();
 		
-		NewsSection nacionalesNews = new NewsSection(const_NEWS_SEC1, this.const_nacionales_link);
+		NewsSection nacionalesNews = new NewsSection(NEWS_SEC1, this.const_nacionales_link);
 		nacionalesNews.newsList = new LinkedList<NewsObject>();
 		
 		//Note topNews should always be added first
